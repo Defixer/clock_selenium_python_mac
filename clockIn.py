@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
 cron_file = '/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/cron.bak'
-client_secret = "/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/client_secret.json"
+client_secret = "/Users/crmonlinegraph/Documents/Scripts/client_secret.json"
 timeout = 5
 
 def sign_in_creds():	
