@@ -10,8 +10,8 @@ import os
 from datetime import datetime, timedelta
 
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
-cron_file = '/Users/crmonlinegraph/Documents/Scripts/cron.bak'
-client_secret = "/Users/crmonlinegraph/Documents/Scripts/client_secret.json"
+cron_file = '/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/cron.bak'
+client_secret = "/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/client_secret.json"
 timeout = 5
 
 def sign_in_creds():	
@@ -39,7 +39,7 @@ def execute_update_cron():
 		}
 		time_period["in"] = datetime.now().strftime(time_period["FMT"])
 		time_period = calculate_time_out(time_period)	
-		cron_instance = "{} {} * * 1-5 ./Users/crmonlinegraph/Documents/Scripts/clockOut.sh".format(time_period["minutes"], time_period["hours"])
+		cron_instance = "{} {} * * 1-5 ./Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/runClockOut.sh".format(time_period["minutes"], time_period["hours"])
 		footer = "\n#Date\t  | {}\n#Time In  | {}\n#Time Out | {}\n".format(time_period["today"], time_period["in"], time_period["out"])
 
 		file = open(cron_file, 'w+')
