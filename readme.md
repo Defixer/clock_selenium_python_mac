@@ -14,35 +14,35 @@ This is a sample selenium script for Clocking In and Out for mac
 
 ## Installing python
 ```
-brew install python
+$ brew install python
 ```
 
 ## Installing pip
 ```
-sudo easy_install pip
+$ sudo easy_install pip
 ```
 
 ## Creating virtual environment
 ```
-python -m virtual env
+$ python -m virtual env
 ```
 
 ## Activating/Deactivating virtual environment
 ```
-source /[env directory]/bin/activate
-deactivate
+$ source /[env directory]/bin/activate
+$ deactivate
 ```
 ##### Adding aliases
 ```
-sudo nano ~/.bash_profile
-alias venvpy2.7="source /[env directory]/bin/activate"
+$ sudo nano ~/.bash_profile
+$ alias venvpy2.7="source /[env directory]/bin/activate"
 //Ctrl+O to save
 //Ctrl+X to exit
-source ~/.bash_profile //to activate your updated bash_profile
+$ source ~/.bash_profile //to activate your updated bash_profile
 
-venvpy2.7 [in terminal] will automatically activate your virtual environment
+$ venvpy2.7 will automatically activate your virtual environment
 ```
 
 ## Installing Selenium
-`pip install selenium`
+`$ pip install selenium`
 
