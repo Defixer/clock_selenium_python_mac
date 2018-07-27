@@ -32,10 +32,6 @@ python -m virtual env
 source /[env directory]/bin/activate
 deactivate
 ```
-
-## Installing Selenium
-`pip install selenium`
-
 ##### Adding aliases
 ```
 sudo nano ~/.bash_profile
@@ -46,3 +42,7 @@ source ~/.bash_profile //to activate your updated bash_profile
 
 venvpy2.7 [in terminal] will automatically activate your virtual environment
 ```
+
+## Installing Selenium
+`pip install selenium`
+
