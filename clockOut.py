@@ -9,7 +9,7 @@ import json
 import os
 
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
-cron_file = '/Users/crmonlinegraph/Documents/Scripts/cron.bak'
+cron_file = '/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/cron.bak'
 client_secret = "/Users/crmonlinegraph/Documents/Scripts/client_secret.json"
 timeout = 5
 
@@ -62,16 +62,16 @@ def Mbox(title, message):
 
 def press_any_key():
 	input("Press any key...")
-	browser.close()
+	browser.quit()
 
 def shutdown():
-	choice = input("Shutdown PC (Y/N)? ")
-	if choice.upper() == "Y":
-		print("You have timed out. System shutting down...")
+	choice = Mbox("Clock Out", "Would you like to shutdown (Y/N)? ")
+	if choice == 0:
+		MBox("Clock Out", "You have timed out. System shutting down...")
 		time.sleep(3)
 		os.system("sudo shutdown -h now")
 	else:		
-		print("You have timed out and will not shutdown computer")
+		Mbox("Clock Out", "You have timed out and will not shutdown computer")
 		time.sleep(3)
 
 def myMain():	
@@ -82,7 +82,8 @@ def myMain():
 		get_element('content')
 		sign_in_creds()
 		get_element('footer-logo')
-		press_any_key()
+		browser.get("https://crmonline.payrollhero.com/my_clock")
 		shutdown()
+	browser.quit()
 		
 myMain()
