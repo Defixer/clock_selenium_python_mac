@@ -7,6 +7,9 @@ from selenium.common.exceptions import TimeoutException
 import time
 import json
 import os
+import tkinter
+import tkinter.messagebox
+import subprocess
 
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
 cron_file = '/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/cron.bak'
@@ -57,33 +60,63 @@ def get_time_in_out():
 	return time_period
 		
 def Mbox(title, message):
-	message_box = '\'Tell application "System Events" to display dialog "{}" with title "{}"\''.format(message, title)
-	return os.system('osascript -e {}'.format(message_box))
+	window = tkinter.Tk()
+	window.withdraw()
+	message_box = {
+		"window": window
+	}	
+	choice = tkinter.messagebox.askokcancel(title, message)
+	message_box["choice"] = choice
+	return message_box
 
 def press_any_key():
 	input("Press any key...")
 	browser.quit()
 
+def remove_cron_instances():
+	os.system("crontab -r")
+	os.system("crontab -l")
+
 def shutdown():
-	choice = Mbox("Clock Out", "Would you like to shutdown (Y/N)? ")
-	if choice == 0:
-		MBox("Clock Out", "You have timed out. System shutting down...")
-		time.sleep(3)
-		os.system("sudo shutdown -h now")
-	else:		
-		Mbox("Clock Out", "You have timed out and will not shutdown computer")
-		time.sleep(3)
+	while 1:
+		i=0
+		try:
+			message_box = Mbox("Clock Out", "Would you like to shutdown (Y/N)? ")
+			if message_box["choice"] == True:
+				message_box["window"].destroy()
+				browser.quit()
+				MBox("Clock Out", "You have timed out. System shutting down...")
+				print("Shutdown: Yes")
+				time.sleep(3)
+				os.system("pkill -u $USER")
+				time.sleep(3)
+				os.system("echo {} | sudo -S shutdown -h now".format(client_secret["local_pass"]))				
+			else:		
+				Mbox("Clock Out", "You have timed out and will not shutdown computer")
+				print("Shutdown: No")
+				time.sleep(3)
+				message_box["window"].destroy()
+				break
+		except EOFError:
+			i+=1
 
 def myMain():	
 	time_period = get_time_in_out()
-	choice = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
-	if choice == 0:		
+	message_box = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
+	if message_box["choice"] == True:	
+		print("Clock Out: Yes")	
 		browser.get("https://crmonline.payrollhero.com/dashboard") #go to website			
 		get_element('content')
 		sign_in_creds()
 		get_element('footer-logo')
 		browser.get("https://crmonline.payrollhero.com/my_clock")
 		shutdown()
+	else:
+		print("Clock Out: No")
+		time.sleep(3)
+	remove_cron_instances()
+	message_box["window"].destroy()
 	browser.quit()
 		
 myMain()
+
