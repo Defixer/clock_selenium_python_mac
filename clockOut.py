@@ -101,6 +101,7 @@ def shutdown():
 			i+=1
 
 def myMain():	
+	os.system("Python used: python -V")
 	time_period = get_time_in_out()
 	message_box = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
 	if message_box["choice"] == True:	

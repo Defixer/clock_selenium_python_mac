@@ -112,7 +112,7 @@ def set_desktop_background():
 
 
 def myMain():	
-	os.system("python -V")
+	os.system("Python used: python -V")
 	browser.get("https://crmonline.payrollhero.com/dashboard") #go to website	
 	get_element('require_account_id')
 	sign_in_creds()
