@@ -83,6 +83,7 @@ def shutdown():
 		try:
 			message_box = Mbox("Clock Out", "Would you like to shutdown (Y/N)? ")
 			if message_box["choice"] == True:
+				remove_cron_instances()
 				message_box["window"].destroy()
 				browser.quit()
 				MBox("Clock Out", "You have timed out. System shutting down...")
@@ -101,7 +102,7 @@ def shutdown():
 			i+=1
 
 def myMain():	
-	os.system("Python used: python -V")
+	os.system("python -V")
 	time_period = get_time_in_out()
 	message_box = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
 	if message_box["choice"] == True:	
