@@ -86,11 +86,10 @@ def shutdown():
 				remove_cron_instances()
 				message_box["window"].destroy()
 				browser.quit()
-				MBox("Clock Out", "You have timed out. System shutting down...")
 				print("Shutdown: Yes")
 				time.sleep(3)
 				os.system("pkill -u $USER")
-				time.sleep(3)
+				time.sleep(5)
 				os.system("echo {} | sudo -S shutdown -h now".format(client_secret["local_pass"]))				
 			else:		
 				Mbox("Clock Out", "You have timed out and will not shutdown computer")
