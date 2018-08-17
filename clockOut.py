@@ -87,8 +87,6 @@ def shutdown():
 				message_box["window"].destroy()
 				browser.quit()
 				print("Shutdown: Yes")
-				time.sleep(3)
-				os.system("pkill -u $USER")
 				time.sleep(5)
 				os.system("echo {} | sudo -S shutdown -h now".format(client_secret["local_pass"]))				
 			else:		
@@ -120,4 +118,3 @@ def myMain():
 	browser.quit()
 		
 myMain()
-
