@@ -9,6 +9,8 @@ import json
 import os
 from datetime import datetime, timedelta
 import subprocess
+import tkinter
+import tkinter.messagebox
 
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
 cron_file = '/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/cron.bak'
@@ -32,8 +34,8 @@ def sign_in_creds():
 	print("Sign In clicked")
 
 def execute_update_cron():
-	choice = Mbox("Clock In", "Proceed with updating cron?")
-	if choice == 0:
+	message_box = Mbox("Clock In", "Proceed with updating cron?")
+	if message_box["choice"] == True:
 		time_period = {		
 			"FMT": "%H:%M:%S",
 			"today": datetime.now().strftime("%Y-%m-%d")
@@ -63,8 +65,14 @@ def calculate_time_out(time_period):
 	return time_period
 
 def Mbox(title, message):
-	message_box = '\'Tell application "System Events" to display dialog "{}" with title "{}"\''.format(message, title)
-	return os.system('osascript -e {}'.format(message_box))
+	window = tkinter.Tk()
+	window.withdraw()
+	message_box = {
+		"window": window
+	}
+	choice = tkinter.messagebox.askokcancel(title, message)
+	message_box["choice"] = choice
+	return message_box
 
 def press_any_key():
 	input("Press any key...")

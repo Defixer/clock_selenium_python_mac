@@ -88,7 +88,7 @@ def shutdown():
 				browser.quit()
 				print("Shutdown: Yes")
 				time.sleep(5)
-				os.system("echo {} | sudo -S shutdown -h now".format(client_secret["local_pass"]))				
+				os.system("echo {} | sudo -S shutdown -h now".format(client_secret["local_pass"]))
 			else:		
 				Mbox("Clock Out", "You have timed out and will not shutdown computer")
 				print("Shutdown: No")
