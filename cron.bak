@@ -1,4 +1,4 @@
-00 16 * * 1-5 sh /Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/runClockOut.sh
-#Date	  | 2018-08-27
-#Time In  | 07:47:59
-#Time Out | 16:48:00
+22 17 * * 1-5 sh /Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/runClockOut.sh
+#Date	  | 2018-08-29
+#Time In  | 08:22:12
+#Time Out | 17:22:12

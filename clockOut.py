@@ -78,6 +78,9 @@ def remove_cron_instances():
 	os.system("crontab -l")
 
 def shutdown():
+	with open(client_secret) as json_file:
+		data = json.load(json_file)
+
 	while 1:
 		i=0
 		try:
@@ -88,7 +91,7 @@ def shutdown():
 				browser.quit()
 				print("Shutdown: Yes")
 				time.sleep(5)
-				os.system("echo {} | sudo -S shutdown -h now".format(client_secret["local_pass"]))
+				os.system("echo {} | sudo -S shutdown -h now".format(data["local_pass"]))
 			else:		
 				Mbox("Clock Out", "You have timed out and will not shutdown computer")
 				print("Shutdown: No")
