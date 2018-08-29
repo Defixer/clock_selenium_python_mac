@@ -56,6 +56,9 @@ def execute_update_cron():
 	else:
 		print("User selected 'Cancel'. Script terminates.")
 		
+def run_desktime():
+	subprocess.call(["/bin/bash","-c","open /Applications/DeskTime.app"])
+
 def calculate_time_out(time_period):
 	time_period["out"] = datetime.strptime(time_period["in"], time_period["FMT"])
 	time_period["out"] += timedelta(hours=9)
@@ -127,6 +130,7 @@ def myMain():
 	get_element('footer-logo')
 	browser.get("https://crmonline.payrollhero.com/my_clock")
 	execute_update_cron()
+	run_desktime()
 	set_desktop_background()
 	press_any_key()
 	
