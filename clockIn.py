@@ -65,6 +65,9 @@ def calculate_time_out(time_period):
 	time_period["out"] = time_period["out"].strftime(time_period["FMT"])	
 	time_period["minutes"] = time_period["out"].split(":")[1]
 	time_period["hours"] = time_period["out"].split(":")[0]
+	if time_period["hours"] < "16":
+		time_period["hours"] = "16"
+		time_period["minutes"] = "0"
 	return time_period
 
 def Mbox(title, message):
