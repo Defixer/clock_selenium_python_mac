@@ -62,10 +62,11 @@ def run_desktime():
 def calculate_time_out(time_period):
 	time_period["out"] = datetime.strptime(time_period["in"], time_period["FMT"])
 	time_period["out"] += timedelta(hours=9)
+	time_period["out"] += timedelta(minutes=1)
 	time_period["out"] = time_period["out"].strftime(time_period["FMT"])	
 	time_period["minutes"] = time_period["out"].split(":")[1]
 	time_period["hours"] = time_period["out"].split(":")[0]
-	if time_period["hours"] < "16":
+	if int(time_period["hours"]) < 16:
 		time_period["hours"] = "16"
 		time_period["minutes"] = "0"
 	return time_period
@@ -124,16 +125,22 @@ def set_desktop_background():
 	except Exception as e:
 		pass
 
+def is_weekday():
+	if datetime.today().weekday() < 5:
+		return True
+	return False
 
 def myMain():	
 	os.system("Python used: python -V")
-	browser.get("https://crmonline.payrollhero.com/dashboard") #go to website	
-	get_element('require_account_id')
-	sign_in_creds()
-	get_element('footer-logo')
-	browser.get("https://crmonline.payrollhero.com/my_clock")
-	execute_update_cron()
-	run_desktime()
+	is_weekday = is_weekday()
+	if is_weekday:
+		browser.get("https://crmonline.payrollhero.com/dashboard") #go to website	
+		get_element('require_account_id')
+		sign_in_creds()
+		get_element('footer-logo')
+		browser.get("https://crmonline.payrollhero.com/my_clock")
+		execute_update_cron()
+		run_desktime()
 	set_desktop_background()
 	press_any_key()
 	

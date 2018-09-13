@@ -90,19 +90,27 @@ def shutdown():
 				message_box["window"].destroy()
 				browser.quit()
 				print("Shutdown: Yes")
-				time.sleep(5)
-				os.system("echo {} | sudo -S shutdown -h now".format(data["local_pass"]))
+				shutdown = {
+					'choice': True,
+					'password': data["local_pass"]
+				}
+				return shutdown
 			else:		
 				Mbox("Clock Out", "You have timed out and will not shutdown computer")
 				print("Shutdown: No")
 				time.sleep(3)
 				message_box["window"].destroy()
-				break
+				shutdown = {
+					'choice': False,
+					'password': data["local_pass"]
+				}
+				return shutdown
 		except EOFError:
 			i+=1
 
 def myMain():	
 	os.system("python -V")
+	os.system("killall Desktime")
 	time_period = get_time_in_out()
 	message_box = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
 	if message_box["choice"] == True:	
@@ -112,12 +120,15 @@ def myMain():
 		sign_in_creds()
 		get_element('footer-logo')
 		browser.get("https://crmonline.payrollhero.com/my_clock")
-		shutdown()
+		shutdown = shutdown()
 	else:
 		print("Clock Out: No")
-		time.sleep(3)
+		time.sleep(3)	
 	remove_cron_instances()
 	message_box["window"].destroy()
 	browser.quit()
+	if shutdown["choice"]:		
+		time.sleep(3)
+		os.system("echo {} | sudo -S shutdown -h now".format(shutdown["password"]))
 		
 myMain()
