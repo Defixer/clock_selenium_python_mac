@@ -73,8 +73,11 @@ def press_any_key():
 	input("Press any key...")
 	browser.quit()
 
-def remove_cron_instances():
+def update_cron_instance():
+	with open(client_secret) as json_file:
+		data = json.load(json_file)
 	os.system("crontab -r")
+	cron_instance = "0 0 * * 0-6 echo {} | sudo -S shutdown -h now".format(data["local_pass"]).
 	os.system("crontab -l")
 
 def shutdown():
@@ -86,7 +89,7 @@ def shutdown():
 		try:
 			message_box = Mbox("Clock Out", "Would you like to shutdown (Y/N)? ")
 			if message_box["choice"] == True:
-				remove_cron_instances()
+				update_cron_instance()
 				message_box["window"].destroy()
 				browser.quit()
 				print("Shutdown: Yes")
