@@ -127,13 +127,14 @@ def set_desktop_background():
 
 def is_weekday():
 	if datetime.today().weekday() < 5:
+		print(datetime.today().weekday())
 		return True
 	return False
 
 def myMain():	
 	os.system("Python used: python -V")
-	is_weekday = is_weekday()
-	if is_weekday:
+	weekday = is_weekday()
+	if weekday:
 		browser.get("https://crmonline.payrollhero.com/dashboard") #go to website	
 		get_element('require_account_id')
 		sign_in_creds()
