@@ -127,7 +127,7 @@ def myMain():
 	else:
 		print("Clock Out: No")
 		time.sleep(3)	
-	remove_cron_instances()
+	update_cron_instance()
 	message_box["window"].destroy()
 	browser.quit()
 	if shutdown["choice"]:		
