@@ -77,8 +77,8 @@ def update_cron_instance():
 	with open(client_secret) as json_file:
 		data = json.load(json_file)
 	os.system("crontab -r")
-	cron_instance = "0 0 * * 0-6 echo {} | sudo -S shutdown -h now".format(data["local_pass"]).
-	os.system("crontab -l")
+	# cron_instance = "0 0 * * 0-6 echo {} | sudo -S shutdown -h now".format(data["local_pass"])
+	# os.system("crontab -l")
 
 def shutdown():
 	with open(client_secret) as json_file:
@@ -93,21 +93,21 @@ def shutdown():
 				message_box["window"].destroy()
 				browser.quit()
 				print("Shutdown: Yes")
-				shutdown = {
+				shutdown_info = {
 					'choice': True,
 					'password': data["local_pass"]
 				}
-				return shutdown
+				return shutdown_info
 			else:		
 				Mbox("Clock Out", "You have timed out and will not shutdown computer")
 				print("Shutdown: No")
 				time.sleep(3)
 				message_box["window"].destroy()
-				shutdown = {
+				shutdown_info = {
 					'choice': False,
 					'password': data["local_pass"]
 				}
-				return shutdown
+				return shutdown_info
 		except EOFError:
 			i+=1
 
@@ -116,6 +116,7 @@ def myMain():
 	os.system("killall Desktime")
 	time_period = get_time_in_out()
 	message_box = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
+	shutdown_info = {}
 	if message_box["choice"] == True:	
 		print("Clock Out: Yes")	
 		browser.get("https://crmonline.payrollhero.com/dashboard") #go to website			
@@ -123,15 +124,15 @@ def myMain():
 		sign_in_creds()
 		get_element('footer-logo')
 		browser.get("https://crmonline.payrollhero.com/my_clock")
-		shutdown = shutdown()
+		shutdown_info = shutdown()
 	else:
 		print("Clock Out: No")
 		time.sleep(3)	
 	update_cron_instance()
-	message_box["window"].destroy()
 	browser.quit()
-	if shutdown["choice"]:		
+	if shutdown_info["choice"] == True:		
 		time.sleep(3)
-		os.system("echo {} | sudo -S shutdown -h now".format(shutdown["password"]))
+		shutdown_now = "echo {} | sudo -S shutdown -h now".format(shutdown_info["password"])
+		subprocess.Popen(shutdown_now, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 		
 myMain()
