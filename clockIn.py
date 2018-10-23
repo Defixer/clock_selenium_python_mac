@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -34,6 +35,7 @@ def sign_in_creds():
 	print("Sign In clicked")
 
 def execute_update_cron():
+	time.sleep(10)
 	message_box = Mbox("Clock In", "Proceed with updating cron?")
 	if message_box["choice"] == True:
 		time_period = {		

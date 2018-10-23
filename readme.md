@@ -1,7 +1,7 @@
 This is a sample selenium script for Clocking In and Out for mac
 
 ## Requirements
-* Python
+* Python 2.7 or later
 * Selenium
 * Selenium Chrome Webdriver
 

@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -131,8 +132,11 @@ def myMain():
 	update_cron_instance()
 	browser.quit()
 	if shutdown_info["choice"] == True:		
-		time.sleep(3)
-		shutdown_now = "echo {} | sudo -S shutdown -h now".format(shutdown_info["password"])
-		subprocess.Popen(shutdown_now, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		print("Shutting down now")
+		time.sleep(3)		
+		shutdown_now = "echo {} | sudo -S /sbin/shutdown -h now".format(shutdown_info["password"])
+		shell = subprocess.Popen(shutdown_now, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		print(shell.stdout.read())
+		print("THIS SHOULD NOT DISPLAY")
 		
 myMain()
