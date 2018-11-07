@@ -36,6 +36,7 @@ def sign_in_creds():
 
 def execute_update_cron():
 	time.sleep(10)
+	os.system("crontab -r")
 	message_box = Mbox("Clock In", "Proceed with updating cron?")
 	if message_box["choice"] == True:
 		time_period = {		

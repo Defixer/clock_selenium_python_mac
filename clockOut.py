@@ -75,11 +75,12 @@ def press_any_key():
 	browser.quit()
 
 def update_cron_instance():
-	with open(client_secret) as json_file:
-		data = json.load(json_file)
 	os.system("crontab -r")
-	# cron_instance = "0 0 * * 0-6 echo {} | sudo -S shutdown -h now".format(data["local_pass"])
-	# os.system("crontab -l")
+	cron_instance = (["0,30 * * * 0-6 open -a AnyDesk"])
+	file = open(cron_file, 'w+')
+	file.write(cron_instance)
+	os.system("crontab {}".format(cron_file))
+	os.system("crontab -l")
 
 def shutdown():
 	with open(client_secret) as json_file:
@@ -114,7 +115,7 @@ def shutdown():
 
 def myMain():	
 	os.system("python -V")
-	os.system("killall Desktime")
+	os.system("killall DeskTime")
 	time_period = get_time_in_out()
 	message_box = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
 	shutdown_info = {}
