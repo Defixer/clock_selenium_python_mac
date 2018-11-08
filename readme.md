@@ -26,8 +26,8 @@ $ sudo easy_install pip
 ```
 $ python -m virtual [environment_name] 
 ```  
-_it will create a folder which serves as your virtual environment; it will be created to the current directory that terminal is in_  
 _it will create a virtual environment with your current python installed; if it's `Python 3.7` it will already have `pip` as well_
+_it will be created to the current directory that terminal is in_  
 
 ## Activating/Deactivating virtual environment
 ```
@@ -48,4 +48,3 @@ $ venvpy2.7 will automatically activate your virtual environment
 
 ## Installing Selenium
 `$ pip install selenium`
-
