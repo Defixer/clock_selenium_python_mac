@@ -1,13 +1,13 @@
 This is a sample selenium script for Clocking In and Out for mac
 
 ## Requirements
-* Python 3.7 or later
+* Python 2.7 or later
 * Selenium
 * Selenium Chrome Webdriver
 
 ## Installation of Webdrivers
-[Driver Installation](http://selenium-python.readthedocs.io/installation.html)
-#put all webdrivers in _/usr/local/bin_
+[Driver Installation](http://selenium-python.readthedocs.io/installation.html)  
+_put all webdrivers in __/usr/local/bin__
 
 ##### Best practices
 `browser = browser(/usr/local/bin/chromedriver/)`
@@ -26,7 +26,8 @@ $ sudo easy_install pip
 ```
 $ python -m virtual [environment_name] 
 ```  
-_#it will create a folder which serves as your virtual environment; it will be created to the current directory that terminal is in_
+_it will create a folder which serves as your virtual environment; it will be created to the current directory that terminal is in_  
+_it will create a virtual environment with your current python installed; if it's `Python 3.7` it will already have `pip` as well_
 
 ## Activating/Deactivating virtual environment
 ```
@@ -36,13 +37,13 @@ $ deactivate
 ##### Adding aliases
 ```
 $ sudo nano ~/.bash_profile
-$ alias venvpy3.7="source /[virtual_env_directory]/bin/activate"
+$ alias venvpy2.7="source /[virtual_env_directory]/bin/activate"
 #Ctrl+O to save
 #Ctrl+X to exit
 $ source ~/.bash_profile #to activate your updated bash_profile
 
-$ venvpy3.7 will automatically activate your virtual environment
-(venvpy3.7) $ #virtual environment name should be included in the prompt when it is activated
+$ venvpy2.7 will automatically activate your virtual environment
+(venvpy2.7) $ #virtual environment name should be included in the prompt when it is activated
 ```
 
 ## Installing Selenium
