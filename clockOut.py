@@ -62,7 +62,8 @@ def get_time_in_out():
 		
 def Mbox(title, message):
 	window = tkinter.Tk()
-	window.withdraw()
+	application_window.withdraw() #hides the root window
+	application_window.lift() #makes the application window on top
 	message_box = {
 		"window": window
 	}	
@@ -76,7 +77,7 @@ def press_any_key():
 
 def update_cron_instance():
 	os.system("crontab -r")
-	cron_instance = (["0,30 * * * 0-6 open -a AnyDesk"])
+	cron_instance = "0,30 * * * 0-6 open -a AnyDesk"
 	file = open(cron_file, 'w+')
 	file.write(cron_instance)
 	os.system("crontab {}".format(cron_file))
