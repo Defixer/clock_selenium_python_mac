@@ -7,7 +7,7 @@ This is a sample selenium script for Clocking In and Out for mac
 
 ## Installation of Webdrivers
 [Driver Installation](http://selenium-python.readthedocs.io/installation.html)  
-_put all webdrivers in __/usr/local/bin__
+_put all webdrivers in __/usr/local/bin___
 
 ##### Best practices
 `browser = browser(/usr/local/bin/chromedriver/)`
