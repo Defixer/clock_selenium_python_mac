@@ -35,12 +35,13 @@ $ deactivate
 ##### Adding aliases
 ```
 $ sudo nano ~/.bash_profile
-$ alias venvpy2.7="source /[env directory]/bin/activate"
+$ alias venvpy3.7="source /[env directory]/bin/activate"
 #Ctrl+O to save
 #Ctrl+X to exit
 $ source ~/.bash_profile #to activate your updated bash_profile
 
-$ venvpy2.7 will automatically activate your virtual environment
+$ venvpy3.7 will automatically activate your virtual environment
+(venvpy3.7) $ #virtual environment name should be included in the prompt when it is activated
 ```
 
 ## Installing Selenium
