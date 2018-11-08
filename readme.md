@@ -24,18 +24,18 @@ $ sudo easy_install pip
 
 ## Creating virtual environment
 ```
-$ python -m virtual env
+$ python -m virtual [environment_name] #it will create a folder which serves as your virtual environment; it will be created to the current directory that terminal is in
 ```
 
 ## Activating/Deactivating virtual environment
 ```
-$ source /[env directory]/bin/activate
+$ source /[virtual_env_directory]/bin/activate
 $ deactivate
 ```
 ##### Adding aliases
 ```
 $ sudo nano ~/.bash_profile
-$ alias venvpy3.7="source /[env directory]/bin/activate"
+$ alias venvpy3.7="source /[virtual_env_directory]/bin/activate"
 #Ctrl+O to save
 #Ctrl+X to exit
 $ source ~/.bash_profile #to activate your updated bash_profile
