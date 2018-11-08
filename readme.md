@@ -24,8 +24,9 @@ $ sudo easy_install pip
 
 ## Creating virtual environment
 ```
-$ python -m virtual [environment_name] #it will create a folder which serves as your virtual environment; it will be created to the current directory that terminal is in
-```
+$ python -m virtual [environment_name] 
+```  
+_#it will create a folder which serves as your virtual environment; it will be created to the current directory that terminal is in_
 
 ## Activating/Deactivating virtual environment
 ```
