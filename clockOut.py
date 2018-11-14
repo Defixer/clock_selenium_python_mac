@@ -62,8 +62,8 @@ def get_time_in_out():
 		
 def Mbox(title, message):
 	window = tkinter.Tk()
-	application_window.withdraw() #hides the root window
-	application_window.lift() #makes the application window on top
+	window.withdraw() #hides the root window
+	window.lift() #makes the application window on top
 	message_box = {
 		"window": window
 	}	
