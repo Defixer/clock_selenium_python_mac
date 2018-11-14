@@ -92,9 +92,9 @@ def shutdown():
 		try:
 			message_box = Mbox("Clock Out", "Would you like to shutdown (Y/N)? ")
 			if message_box["choice"] == True:
-				update_cron_instance()
-				message_box["window"].destroy()
-				browser.quit()
+				# update_cron_instance()
+				# message_box["window"].destroy()
+				# browser.quit()
 				print("Shutdown: Yes")
 				shutdown_info = {
 					'choice': True,
@@ -132,6 +132,7 @@ def myMain():
 		print("Clock Out: No")
 		time.sleep(3)	
 	update_cron_instance()
+	message_box["window"].destroy()
 	browser.quit()
 	if shutdown_info["choice"] == True:		
 		print("Shutting down now")
