@@ -134,12 +134,15 @@ def myMain():
 	update_cron_instance()
 	message_box["window"].destroy()
 	browser.quit()
-	if shutdown_info["choice"] == True:		
-		print("Shutting down now")
-		time.sleep(3)		
-		shutdown_now = "echo {} | sudo -S /sbin/shutdown -h now".format(shutdown_info["password"])
-		shell = subprocess.Popen(shutdown_now, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-		print(shell.stdout.read())
-		print("THIS SHOULD NOT DISPLAY")
+	try:
+		if shutdown_info["choice"] == True:		
+			print("Shutting down now")
+			time.sleep(3)		
+			shutdown_now = "echo {} | sudo -S /sbin/shutdown -h now".format(shutdown_info["password"])
+			shell = subprocess.Popen(shutdown_now, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+			print(shell.stdout.read())
+			print("THIS SHOULD NOT DISPLAY")
+	except KeyError:
+		continue
 		
 myMain()
