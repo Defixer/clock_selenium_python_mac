@@ -49,7 +49,7 @@ def sign_in_creds():
 	sign_in.click()
 	print("Sign In clicked")
 
-def get_time_in_out():
+def get_times():
 	time_period = {}
 	lines = [line.rstrip('\n') for line in open(cron_file)]
 	for line in lines:
@@ -115,12 +115,12 @@ def shutdown():
 			i+=1
 
 def myMain():	
-	os.system("python -V")
-	os.system("killall DeskTime")
-	time_period = get_time_in_out()
+	os.system("python -V")	
+	time_period = get_times()
 	message_box = Mbox("Clock Out", "Would you like to clock out?\n\n{}\n{}".format(time_period["in"], time_period["out"]))
 	shutdown_info = {}
 	if message_box["choice"] == True:	
+		os.system("killall DeskTime")
 		print("Clock Out: Yes")	
 		browser.get("https://crmonline.payrollhero.com/dashboard") #go to website			
 		get_element('content')
@@ -130,7 +130,7 @@ def myMain():
 		shutdown_info = shutdown()
 	else:
 		print("Clock Out: No")
-		time.sleep(3)	
+		time.sleep(2)	
 	update_cron_instance()
 	message_box["window"].destroy()
 	browser.quit()
@@ -143,6 +143,6 @@ def myMain():
 			print(shell.stdout.read())
 			print("THIS SHOULD NOT DISPLAY")
 	except KeyError:
-		continue
+		pass
 		
 myMain()

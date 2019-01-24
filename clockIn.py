@@ -138,6 +138,7 @@ def myMain():
 	os.system("Python used: python -V")
 	weekday = is_weekday()
 	if weekday:
+		run_desktime()
 		browser.get("https://crmonline.payrollhero.com/dashboard") #go to website	
 		get_element('require_account_id')
 		sign_in_creds()
