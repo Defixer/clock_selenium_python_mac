@@ -35,7 +35,7 @@ def sign_in_creds():
 	print("Sign In clicked")
 
 def execute_update_cron():
-	time.sleep(10)
+	time.sleep(5)
 	os.system("crontab -r")
 	message_box = Mbox("Clock In", "Proceed with updating cron?")
 	if message_box["choice"] == True:
@@ -69,9 +69,12 @@ def calculate_time_out(time_period):
 	time_period["out"] = time_period["out"].strftime(time_period["FMT"])	
 	time_period["minutes"] = time_period["out"].split(":")[1]
 	time_period["hours"] = time_period["out"].split(":")[0]
-	if int(time_period["hours"]) < 16:
-		time_period["hours"] = "16"
+	if int(time_period["hours"]) < 15:
+		time_period["hours"] = "15"
 		time_period["minutes"] = "0"
+	else if ( (int(time_period["hours"]) == "17" and int(time_period["minutes"]) > 30) or int(time_period["hours"]) >= "18"):
+		time_period["hours"] = "17"
+		time_period["minutes"] = "30"
 	return time_period
 
 def Mbox(title, message):
