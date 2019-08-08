@@ -44,7 +44,8 @@ def execute_update_cron():
 			"today": datetime.now().strftime("%Y-%m-%d")
 		}
 		time_period["in"] = datetime.now().strftime(time_period["FMT"])
-		time_period = calculate_time_out(time_period)	
+		time_period = calculate_time_out(time_period)
+		print("{}:{}".format(time_period["hours"], time_period["minutes"]))	
 		cron_instance = "{} {} * * 1-5 sh /Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/runClockOut.sh".format(time_period["minutes"], time_period["hours"])
 		footer = "\n#Date\t  | {}\n#Time In  | {}\n#Time Out | {}\n".format(time_period["today"], time_period["in"], time_period["out"])
 
@@ -70,11 +71,16 @@ def calculate_time_out(time_period):
 	time_period["minutes"] = time_period["out"].split(":")[1]
 	time_period["hours"] = time_period["out"].split(":")[0]
 	if int(time_period["hours"]) < 15:
+		print("max at 3")
 		time_period["hours"] = "15"
 		time_period["minutes"] = "0"
-	else if ( (int(time_period["hours"]) == "17" and int(time_period["minutes"]) > 30) or int(time_period["hours"]) >= "18"):
+		time_period["out"] = "15:00:00"
+	elif (int(time_period["hours"]) == 17 and int(time_period["minutes"]) > 30) or int(time_period["hours"]) >= 18:
+		print("max at 5:30")
 		time_period["hours"] = "17"
 		time_period["minutes"] = "30"
+		time_period["out"] = "17:30:00"
+	print("time period to be returned: {}:{}".format(time_period["hours"], time_period["minutes"]))
 	return time_period
 
 def Mbox(title, message):
