@@ -23,16 +23,38 @@ $ sudo easy_install pip
 ```
 
 ## Creating virtual environment
+* using Virtualenv 
 ```
 $ python -m virtual [environment_name] 
 ```  
 _it will create a virtual environment with your current python installed; if it's `Python 3.7` it will already have `pip` as well_  
 _it will be created to the current directory that terminal is in_  
+  
+* using pyenv
+```
+//Lists all python installed
+$ pyenv versions
+
+//Switches the current python version to be used
+$ pyenv global 3.x.x
+
+//Creating virtual environment
+$ mkdir ~/.virtual_envs
+$ cd ~/.virtual_envs
+$ pyenv virtualenv 3.x.x <environment_name>
+```
 
 ## Activating/Deactivating virtual environment
+* via Shell
 ```
-$ source /[virtual_env_directory]/bin/activate
+$ pyenv activate <virtualenv name>
 $ deactivate
+```  
+  
+* via Bash script
+```
+eval "$(pyenv init -)"
+pyenv activate <virtualenv name>
 ```
 ##### Adding aliases
 ```
