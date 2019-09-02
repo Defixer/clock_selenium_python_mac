@@ -14,8 +14,8 @@ import tkinter
 import tkinter.messagebox
 
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
-cron_file = '/Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/cron.bak'
-client_secret = "/Users/crmonlinegraph/Documents/Scripts/client_secret.json"
+cron_file = '/Users/crmonlinegraph/Documents/#Scripts/clock_selenium_python_mac/cron.bak'
+client_secret = "/Users/crmonlinegraph/Documents/#Scripts/client_secret.json"
 timeout = 5
 
 def sign_in_creds():	
@@ -46,7 +46,7 @@ def execute_update_cron():
 		time_period["in"] = datetime.now().strftime(time_period["FMT"])
 		time_period = calculate_time_out(time_period)
 		print("{}:{}".format(time_period["hours"], time_period["minutes"]))	
-		cron_instance = "{} {} * * 1-5 sh /Users/crmonlinegraph/Documents/Scripts/clock_selenium_python_mac/runClockOut.sh".format(time_period["minutes"], time_period["hours"])
+		cron_instance = "{} {} * * 1-5 sh /Users/crmonlinegraph/Documents/#Scripts/clock_selenium_python_mac/runClockOut.sh".format(time_period["minutes"], time_period["hours"])
 		footer = "\n#Date\t  | {}\n#Time In  | {}\n#Time Out | {}\n".format(time_period["today"], time_period["in"], time_period["out"])
 
 		file = open(cron_file, 'w+')
@@ -113,7 +113,7 @@ def get_element(element_id):
 			i+=1
 
 def set_desktop_background():	
-	black_bg = "/Users/crmonlinegraph/Documents/Scripts/black_bg.png"
+	black_bg = "/Users/crmonlinegraph/Documents/#Scripts/black_bg.png"
 	backgrounds = [black_bg, black_bg]
 	SET_DESKTOP_IMAGE_WRAPPER = """/usr/bin/osascript<<END
 	tell application "System Events"
